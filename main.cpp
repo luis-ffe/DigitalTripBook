@@ -1,4 +1,4 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQuickStyle>
 #include <QIcon>
@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     // Set the Qt Quick Controls style to Material (supports customization)
     QQuickStyle::setStyle("Material");
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     dbHandler.initDb();
 
     // Expose the database handler to QML
-    engine.rootContext()->setContextProperty("dbHandler", &dbHandler);
+    engine.rootContext()->setContextProperty("databaseHandler", &dbHandler);
 
     QObject::connect(
         &engine,

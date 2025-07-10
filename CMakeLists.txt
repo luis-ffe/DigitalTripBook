@@ -4,7 +4,7 @@ project(DigitalTripBook VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2 QuickLayouts Sql)
+find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2 QuickLayouts Sql Charts)
 
 qt_standard_project_setup(REQUIRES 6.8)
 
@@ -24,6 +24,9 @@ qt_add_qml_module(appDigitalTripBook
         MediaPage.qml
         StatisticsPage.qml
         TripDetailPage.qml
+        StatisticItem.qml
+        SimpleBarChart.qml
+        SimpleLineChart.qml
     RESOURCES
         resources.qrc
 )
@@ -35,6 +38,7 @@ target_link_libraries(appDigitalTripBook
     PRIVATE Qt6::QuickControls2
     PRIVATE Qt6::QuickLayouts
     PRIVATE Qt6::Sql
+    PRIVATE Qt6::Charts
 )
 
 # For Linux, it's often better to ensure that the QML plugins are copied to the build directory
@@ -77,6 +81,3 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR})
 set(CMAKE_AUTORCC_OPTIONS "--name" "qml")
 
 set(QT_QML_GENERATE_QMLLS_INI ON)
-
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Quick Sql)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Quick Sql)

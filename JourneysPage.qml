@@ -92,7 +92,23 @@ Rectangle {
 
             // When the component is ready, load the first page of trips
             Component.onCompleted: {
-                loadTrips(0);
+                // Load the first page of trips when the component is ready
+                loadMoreTrips();
+            }
+
+            function loadMoreTrips() {
+                // Call the C++ backend to get the next page of trips
+                var newTrips = databaseHandler.getTrips(currentPage, tripsPerPage);
+
+                if (newTrips.length > 0) {
+                    for (var i = 0; i < newTrips.length; i++) {
+                        tripList.model.append(newTrips[i]);
+                    }
+                    currentPage++;
+                } else {
+                    console.log("No more trips to load.");
+                    // Optionally, disable the "Next" button here
+                }
             }
         }
     }

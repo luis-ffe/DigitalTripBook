@@ -16,6 +16,9 @@ public:
     Q_INVOKABLE QVariantMap getTripDetails(int tripId);
     Q_INVOKABLE bool updateTripFavoriteStatus(int tripId, bool isFavorite);
     Q_INVOKABLE bool updateTripNotes(int tripId, const QString &notes);
+    Q_INVOKABLE QVariantMap getStatistics();
+    Q_INVOKABLE QVariantList getTripStatisticsData();
+    Q_INVOKABLE QVariantMap getDriverViolationsStatistics();
 
 private:
     QSqlDatabase m_db;

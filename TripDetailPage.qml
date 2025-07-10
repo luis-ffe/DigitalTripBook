@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.15
 Page {
     id: tripDetailPage
     property var tripData: ({});
+    property var databaseHandler: null
 
     signal backClicked()
 
@@ -122,7 +123,7 @@ Page {
                         favoriteStar.color = newStatus ? "gold" : "gray";
 
                         // Call the C++ backend to save the change
-                        dbHandler.updateTripFavoriteStatus(tripDetailPage.tripData.id, newStatus);
+                        databaseHandler.updateTripFavoriteStatus(tripDetailPage.tripData.id, newStatus);
                     }
                 }
             }
@@ -255,7 +256,7 @@ Page {
                         var newNotes = notesTextArea.text;
                         tripDetailPage.tripData.notes = newNotes;
                         notesLabel.text = newNotes ? newNotes : "No notes for this trip.";
-                        dbHandler.updateTripNotes(tripDetailPage.tripData.id, newNotes);
+                        databaseHandler.updateTripNotes(tripDetailPage.tripData.id, newNotes);
                         notesPopup.close();
                     }
                     Accessible.name: "Save notes"

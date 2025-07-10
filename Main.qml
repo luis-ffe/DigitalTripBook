@@ -106,8 +106,11 @@ ApplicationWindow {
         JourneysPage {
             onAddTripClicked: showAddTrip = true
             onTripSelected: function(tripId) {
-                var tripDetails = dbHandler.getTripDetails(tripId);
-                stackView.push(tripDetailComponent, { tripData: tripDetails });
+                var tripDetails = databaseHandler.getTripDetails(tripId);
+                stackView.push(tripDetailComponent, {
+                    "tripData": tripDetails,
+                    "databaseHandler": databaseHandler
+                });
             }
         }
     }
