@@ -10,8 +10,16 @@ ApplicationWindow {
     height: 700
     visible: true
 
+    // Add our focus helper to manage iOS focus issues
+    FocusHelper {
+        id: focusHelper
+    }
+
     function navigateBack() {
         if (stackView.depth > 1) {
+            // Use our focus helper to prevent stale focus object issues
+            focusHelper.prepareForNavigation();
+            
             // Explicitly move focus to a safe, persistent item (the StackView itself)
             // before popping and destroying the current page. This prevents the
             // "stale focus object" crash.

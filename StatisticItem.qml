@@ -4,8 +4,10 @@ import QtQuick.Controls 2.15
 
 Rectangle {
     id: wrapper
-    property alias label: nameLabel.text
-    property alias value: valueLabel.text
+    property string label: ""
+    onLabelChanged: { nameLabel.text = label }
+    property string value: ""
+    onValueChanged: { valueLabel.text = value }
 
     color: "transparent"
     border.color: "#FFFFFF"
